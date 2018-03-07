@@ -16,9 +16,8 @@ module.exports = function (app, db) {
     res.send('редактируем пост ' + id);
   });
 
-  app.post('/post/:id/delete', (req, res) => {
-    console.log(req.body);
+  app.get('/post/:id/delete', (req, res) => {
     var id = req.params.id;
-    res.send('удаляем пост ' + id);
+    res.render('delete.ejs', { id });
   });
 };
