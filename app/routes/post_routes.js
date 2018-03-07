@@ -15,4 +15,10 @@ module.exports = function (app, db) {
     var id = req.params.id;
     res.send('редактируем пост ' + id);
   });
+
+  app.post('/post/:id/delete', (req, res) => {
+    console.log(req.body);
+    var id = req.params.id;
+    res.send('удаляем пост ' + id);
+  });
 };
