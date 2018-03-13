@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const {sequelize} = require('./models/index.js')
+const {sequelize} = require('./models/index.js');
 const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
