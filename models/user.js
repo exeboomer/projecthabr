@@ -11,7 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: DataTypes.TEXT,
     status: DataTypes.BOOLEAN,
-  }, {});
+  }, {
+    hooks: {
+      afterValidate: (user) => {
+      user.password = bcrypt.hashSync(user.password, 8)
+    },
+    },
+  });
   User.associate = function(models) {
     User.hasMany(models.Post);
   };
