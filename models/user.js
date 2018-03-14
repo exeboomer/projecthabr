@@ -11,21 +11,26 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
-    encryptedPassword: DataTypes.TEXT,
+    encryptPassword: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     status: {
       type: DataTypes.BOOLEAN,
       defaultvalue: false,
     },
   }, {
-    hooks: {
-      afterValidate: (user) => {
-        user.encryptedPassword = bcrypt.hashSync(user.encryptedPassword, 8)
+    setterMethod: {
+      password: (encryptPassword) => {
+        const salt = bcrypt.genSaltSync(8)
+        const hash = bcrypt.hashSync(encryptPassword, salt)
+        this.setDataValue('encryptPassword', hash);
       },
     },
   });
 
   User.prototype.verifyPass = function(pass) {
-    return bcrypt.compareSync(pass, this.encryptedPassword);
+    return bcrypt.compareSync(pass, this.encryptPassword);
   };
 
   User.associate = function(models) {

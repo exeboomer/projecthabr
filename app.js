@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 require('./app/routes')(app, {});
 
 
-//sequelize.sync()
-  //.then(() => {
+sequelize.sync()
+  .then(() => {
     app.listen(port)
     console.log(`сервер работает на ` + port + ` порту`)
-//  });
+  });
