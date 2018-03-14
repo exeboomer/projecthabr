@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
-    encryptPassword: {
+    encrypPassword: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -21,16 +21,16 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     setterMethod: {
-      password: (encryptPassword) => {
+      password: (encrypPassword) => {
         const salt = bcrypt.genSaltSync(8)
-        const hash = bcrypt.hashSync(encryptPassword, salt)
+        const hash = bcrypt.hashSync(encrypPassword, salt)
         this.setDataValue('encryptPassword', hash);
       },
     },
   });
 
   User.prototype.verifyPass = function(pass) {
-    return bcrypt.compareSync(pass, this.encryptPassword);
+    return bcrypt.compareSync(pass, this.encrypPassword);
   };
 
   User.associate = function(models) {
