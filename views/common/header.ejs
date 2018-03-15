@@ -1,0 +1,19 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <div class = "title">
+      <span>Вход на сайт</span>
+    </div>
+
+      <%if (error_msg) { %>
+        <%- "<div class='alert alert-danger'>" %>
+          <%= error_msg %>
+        <%- "</div>" %>
+      <% } %>
+      <% if (success_msg) { %>
+        <%- "<div class='alert alert-success'>" %>
+          <p><%= error_msg %></p>
+      <%- "</div>" %>
+      <% } %>
+
+  </nav>
+</header>
